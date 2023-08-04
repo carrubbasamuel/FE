@@ -6,7 +6,7 @@ export const fetchAddReview = createAsyncThunk(
     'review/fetchAddReview',
     (review, { getState }) => {
         const token = getState().login.userLogged.token;
-        const response = axios.post('http://localhost:3003/addReview', review, {
+        const response = axios.post(`${process.env.REACT_APP_API_URL}/addReview`, review, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
@@ -23,7 +23,7 @@ export const fetchGetReviews = createAsyncThunk(
         const token = getState().login.userLogged.token;
         const id = getState().review.postToReview;
         try {
-            const response = await axios.get(`http://localhost:3003/getReviews/${id}`,{
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/getReviews/${id}`,{
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ export const fetchDeleteReview = createAsyncThunk(
     async (reviewId, { getState }) => {
         const token = getState().login.userLogged.token;
         try {
-            const response = await axios.delete(`http://localhost:3003/deleteReview/${reviewId}`,{
+            const response = await axios.delete(`${process.env.REACT_APP_API_URL}/deleteReview/${reviewId}`,{
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ export const fetchEditReview = createAsyncThunk(
     async (review, { getState }) => {
         const token = getState().login.userLogged.token;
         try {
-            const response = await axios.patch(`http://localhost:3003/editReview/${review.reviewId}`, review,{
+            const response = await axios.patch(`${process.env.REACT_APP_API_URL}/editReview/${review.reviewId}`, review,{
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,

@@ -10,7 +10,7 @@ export const fetchAuthors = createAsyncThunk(
         try {
             const state = getState();
             const ApiKey = state.login.userLogged.token;
-            const response = await axios.get(`http://localhost:3003/posts?page=${currentPage}`, {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts?page=${currentPage}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "Bearer " + ApiKey,
@@ -40,7 +40,7 @@ export const fetchNewPost = createAsyncThunk(
         const user = getState().login.userLogged;
         const ApiKey = user.token;
         try {
-            const response = await axios.post('http://localhost:3003/posted', formData, {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/posted`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     "Authorization": "Bearer " + ApiKey,
@@ -62,7 +62,7 @@ export const fetchMyPosts = createAsyncThunk(
         const { token } = user;
 
         try {
-            const response = await axios.get('http://localhost:3003/MyPosts', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/MyPosts`, {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "Bearer " + token,
@@ -86,7 +86,7 @@ export const fetchDeletePost = createAsyncThunk(
         try {
             const user = getState().login.userLogged;
             const { token } = user;
-            const response = await axios.delete(`http://localhost:3003/delete/${id}`, {
+            const response = await axios.delete(`${process.env.REACT_APP_API_URL}/delete/${id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "Bearer " + token,
@@ -108,7 +108,7 @@ export const fetchSavePost = createAsyncThunk(
         try {
             const user = getState().login.userLogged;
             const { token } = user;
-            const response = await axios.patch(`http://localhost:3003/save/${id}`, {}, {
+            const response = await axios.patch(`${process.env.REACT_APP_API_URL}/save/${id}`, {}, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -130,7 +130,7 @@ export const fetchUnsavePost = createAsyncThunk(
         try {
             const user = getState().login.userLogged;
             const { token } = user;
-            const response = await axios.patch(`http://localhost:3003/unsave/${id}`, {}, {
+            const response = await axios.patch(`${process.env.REACT_APP_API_URL}/unsave/${id}`, {}, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -152,7 +152,7 @@ export const fetchSavedPosts = createAsyncThunk(
         try {
             const user = getState().login.userLogged;
             const { token } = user;
-            const response = await axios.get('http://localhost:3003/saved', {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/saved`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -174,7 +174,7 @@ export const fetchLike = createAsyncThunk(
         try {
             const user = getState().login.userLogged;
             const { token } = user;
-            const response = await axios.patch(`http://localhost:3003/like/${id}`, {}, {
+            const response = await axios.patch(`${process.env.REACT_APP_API_URL}/like/${id}`, {}, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
@@ -197,7 +197,7 @@ export const fetchUnlike = createAsyncThunk(
         try {
             const user = getState().login.userLogged;
             const { token } = user;
-            const response = await axios.patch(`http://localhost:3003/unlike/${id}`, {}, {
+            const response = await axios.patch(`${process.env.REACT_APP_API_URL}/unlike/${id}`, {}, {
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,

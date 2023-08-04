@@ -10,7 +10,7 @@ export const fetchLogin = createAsyncThunk(
     'login/fetchLogin',
     async (user) => {
         try {
-            const response = await fetch('http://localhost:3003/login', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const fetchRegister = createAsyncThunk(
     'login/fetchRegister',
     async (user) => {
         try {
-            const response = await fetch('http://localhost:3003/register', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export const fetchDelete = createAsyncThunk(
     'login/fetchDelete',
     async (_, { getState, dispatch }) => {
         try {
-            const response = await axios.delete('http://localhost:3003/delete', {
+            const response = await axios.delete(`${process.env.REACT_APP_API_URL}/delete`, {
                 headers: {
                     'Content-Type': 'application/json',
                     "Authorization": "Bearer " + getState().login.userLogged.token,
@@ -80,7 +80,7 @@ export const fetchUpdateAvatar = createAsyncThunk(
             const formData = new FormData();
             formData.append('avatar', file);
 
-            const response = await axios.patch('http://localhost:3003/updateAvatar', formData, {
+            const response = await axios.patch(`${process.env.REACT_APP_API_URL}/updateAvatar`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': 'Bearer ' + getState().login.userLogged.token

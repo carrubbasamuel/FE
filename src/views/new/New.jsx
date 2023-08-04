@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { AiFillHeart, AiOutlineComment } from "react-icons/ai";
+import { AiOutlineComment } from "react-icons/ai";
 import { TiDocumentDelete } from 'react-icons/ti';
 import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";

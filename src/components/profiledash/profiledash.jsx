@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Dropdown, Image, Row } from 'react-bootstrap';
+import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 import { BsGear } from 'react-icons/bs';
 import ModalDelete from './ModalDelete';
 import './profiledash.css';

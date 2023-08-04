@@ -1,0 +1,8 @@
+.col-card{
+    margin-bottom: 100px;
+}
+
+.col-card:hover{
+    transform: scale(1.02);
+    transition: 0.5s;
+}

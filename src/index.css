@@ -1,7 +1,5 @@
 body {
   font-family: 'DM Sans', sans-serif;
-  zoom: 80%;
-  --webkit-zoom: 80%;
 }
 
 .sr-only{

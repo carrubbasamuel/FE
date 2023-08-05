@@ -10,6 +10,7 @@ import Login from "./views/login/login";
 import NewBlogPost from "./views/new/New";
 import Register from "./views/register/register";
 import SuccessLog from "./views/successLog/successLog";
+import ProfileAccounts from "./views/profileAccounts/profileAccounts";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/success" element={<SuccessLog />} />
         {/* Rotte Protette */}
         <Route path="/" element={<ProtectedRoute element={<Home />} />} />
+        <Route path="/profile/:id" element={<ProtectedRoute element={<ProfileAccounts />} />} />
         <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
         <Route path="/blog/:id" element={<ProtectedRoute element={<Blog />} />} />
         <Route path="/new" element={<ProtectedRoute element={<NewBlogPost />} />} />

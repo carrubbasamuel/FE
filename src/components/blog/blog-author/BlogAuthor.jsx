@@ -1,11 +1,12 @@
 import React from "react";
 import { Col, Image, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 const BlogAuthor = props => {
   const { name, avatar } = props;
   return (
-    <Row>
+    <Row as={Link} to={`/profile/${props._id}`}>
       <Col xs={"auto"} className="pe-0">
         <Image className="blog-author" src={avatar} roundedCircle />
       </Col>

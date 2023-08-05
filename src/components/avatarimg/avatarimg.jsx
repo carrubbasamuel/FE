@@ -23,20 +23,20 @@ export default function AvatarImg() {
 
     return (
         <div className='position-relative'>
-                            <Image src={user?.avatar} roundedCircle width={250} height={250} className='shadow imgdash' />
+            <Image src={user?.avatar} roundedCircle width={250} height={250} className='shadow imgdash' />
 
-                            <div className='changeprofile'>
-                                <div className='update-avatar' onClick={handleUpdateClick}>
-                                    <GrUpdate />
-                                </div>
-                                <input
-                                    ref={fileInputRef}
-                                    type='file'
-                                    accept='image/*'
-                                    style={{ display: 'none' }}
-                                    onChange={handleFileChange}
-                                />
-                            </div>
-                        </div>
+            <div className='changeprofile'>
+                <div className='update-avatar' onClick={handleUpdateClick}>
+                    <GrUpdate />
+                </div>
+                <input
+                    ref={fileInputRef}
+                    type='file'
+                    accept='image/*'
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                />
+            </div>
+        </div>
     )
 }

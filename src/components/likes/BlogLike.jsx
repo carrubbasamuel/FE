@@ -2,7 +2,8 @@ import React from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { fetchAuthors, fetchLike, fetchSavedPosts, fetchUnlike } from '../../redux/reducers/PostSlice';
+import { fetchAuthors, fetchLike, fetchSavedPosts, fetchUnlike, setChange } from '../../redux/reducers/PostSlice';
+import './bloglike.css';
 
 
 
@@ -14,15 +15,20 @@ export default function BlogLikeButton({ posts }) {
 
 
   const handleLike = () => {
-    dispatch(fetchLike(_id)).then(() => dispatch(fetchAuthors()));
+    dispatch(fetchLike(_id)).then(() => {
+      dispatch(fetchAuthors())
+      dispatch(setChange(true))
+    });
   };
 
   const handleUnlike = () => {
     dispatch(fetchUnlike(_id)).then(async () => {
       if (location.pathname === '/dashboard') {
         await dispatch(fetchSavedPosts());
+        dispatch(setChange(true))
       } else {
         dispatch(fetchAuthors());
+        dispatch(setChange(true))
       }
     });
   };
@@ -32,18 +38,18 @@ export default function BlogLikeButton({ posts }) {
       <div className="d-flex align-items-center justify-content-center fs-4">
         {posts?.isLike ?
         <div className="d-flex align-items-center justify-content-center fs-4 ms-2">
-          <p className="mb-0 me-2">{posts?.likes?.length}</p>
-          <AiFillHeart style={{ cursor: 'pointer' }} onClick={handleUnlike} />
+          <p className="mb-0 me-2 fs-5">{posts?.likes?.length}</p>
+          <AiFillHeart className='heartbtn' onClick={handleUnlike} />
         </div>
         : <div className="d-flex align-items-center justify-content-center fs-4 ms-2">
-          <p className="mb-0 me-2">{posts?.likes?.length}</p>
-          <AiOutlineHeart style={{ cursor: 'pointer' }} onClick={handleLike} />
+          <p className="mb-0 me-2 fs-5">{posts?.likes?.length}</p>
+          <AiOutlineHeart className='heartbtn' onClick={handleLike} />
         </div>}
       </div>
       :
       <div className="d-flex align-items-center justify-content-center fs-4">
-        <p className="mb-0 me-2">{posts?.likes?.length}</p>
-        <AiFillHeart />
+        <p className="mb-0 me-2 fs-5">{posts?.likes?.length}</p>
+        <AiFillHeart className='heartbtnfill' />
       </div>
   )
 

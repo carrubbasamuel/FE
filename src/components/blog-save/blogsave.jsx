@@ -4,24 +4,29 @@ import { BsBookmarkDashFill, BsBookmarkPlusFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import { fetchAuthors, fetchSavePost, fetchSavedPosts, fetchUnsavePost } from '../../redux/reducers/PostSlice';
+import { fetchAuthors, fetchSavePost, fetchSavedPosts, fetchUnsavePost, setChange } from '../../redux/reducers/PostSlice';
 
 
 export default function BlogSaveButton({ posts }) {
-    const { _id } = posts;
+  const { _id } = posts;
   const dispatch = useDispatch();
   const location = useLocation();
 
   const handleSave = async () => {
-    await dispatch(fetchSavePost(_id)).then(() => dispatch(fetchAuthors()));
+    await dispatch(fetchSavePost(_id)).then(() => {
+      dispatch(fetchAuthors())
+      dispatch(setChange(true))
+    });
   };
 
   const handleUnsave = () => {
     dispatch(fetchUnsavePost(_id)).then(async () => {
-      if (location.pathname === '/dashboard') {
+      if (!(location.pathname === '/')) {
         await dispatch(fetchSavedPosts());
+        dispatch(setChange(true))
       } else if (location.pathname === '/') {
         dispatch(fetchAuthors());
+        dispatch(setChange(true))
       }
     });
   };

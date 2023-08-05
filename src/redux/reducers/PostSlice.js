@@ -223,12 +223,18 @@ const initialState = {
     error: null,
     tokenValidation: null,
     totalPage: 0,
+    change: false,
 }
 
 
 const PostSlice = createSlice({
     name: 'post',
     initialState,
+    reducers: {
+        setChange: (state, action) => {
+            state.change = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchAuthors.pending, (state, action) => {
@@ -295,4 +301,7 @@ const PostSlice = createSlice({
 
 
 
+
+
+export const { setChange } = PostSlice.actions;
 export default PostSlice.reducer;

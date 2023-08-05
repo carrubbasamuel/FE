@@ -95,12 +95,32 @@ export const fetchUpdateAvatar = createAsyncThunk(
     }
 )
 
+export const fetchAnUser = createAsyncThunk(
+    'user/fetchAnUser',
+    async (id, { getState }) => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${getState().login.userLogged.token}`,
+                }
+            });
+            const { data } = response;
+            return data;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+)
+
+
 
 
 
 
 const initialState = {
     userLogged: JSON.parse(localStorage.getItem('user')) || null,
+    userSelected: null,
     codeRegister: null,
     loading: false,
     error: null
@@ -171,6 +191,21 @@ const loginSlice = createSlice({
                 state.error = action.error.message;
                 state.loading = false;
             })
+            .addCase(fetchAnUser.pending, (state, action) => {
+                state.loading = true;
+            }
+            )
+            .addCase(fetchAnUser.fulfilled, (state, action) => {
+                state.userSelected = action.payload;
+                state.loading = false;
+            }
+            )
+            .addCase(fetchAnUser.rejected, (state, action) => {
+
+                state.error = action.error.message;
+                state.loading = false;
+            }
+            )
     }
 })
 

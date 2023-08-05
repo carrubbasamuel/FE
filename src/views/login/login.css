@@ -3,6 +3,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
+  padding: 200px;
   margin-top: 50px;
 }
   
@@ -106,6 +107,7 @@ width: 100%;
 
   @keyframes waves {
     0% {
+     
      transform: translateY(-10px);
      opacity: 0;
     }

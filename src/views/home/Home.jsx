@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+
 import BlogList from "../../components/blog/blog-list/BlogList";
 import Header from "../../components/headers/headers";
 import PaginationPosts from "../../components/pagination/pagination";

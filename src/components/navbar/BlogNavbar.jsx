@@ -4,15 +4,17 @@ import { BiLogOut } from "react-icons/bi";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { logout } from "../../redux/reducers/LoginSlice";
+import NavigationSocker from "./notificationSocket";
 import "./styles.css";
 
 
 
 
 const NavBar = props => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(state => state.login.userLogged);
@@ -30,9 +32,10 @@ const NavBar = props => {
           <img className="blog-navbar-brand" alt="logo" src={logo} />
         </Navbar.Brand>
 
-        {user && user.statusCode === 200 ?
+        {user && user.statusCode === 200 && !(location.pathname === '/login') ?
           <div className="d-flex">
             <div className={`align-items-center justify-content-center ${user ? "d-flex" : "d-none"}`}>
+              <NavigationSocker />
 
               <Dropdown>
                 <Dropdown.Toggle variant="light" id="dropdown-basic">

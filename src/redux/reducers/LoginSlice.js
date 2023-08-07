@@ -1,7 +1,7 @@
 
-
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import io from 'socket.io-client';
 
 
 
@@ -114,7 +114,7 @@ export const fetchAnUser = createAsyncThunk(
 )
 
 
-
+export const socket = io(process.env.REACT_APP_API_URL);//socket connection
 
 
 
@@ -132,6 +132,7 @@ const loginSlice = createSlice({
     initialState,
     reducers: {
         logout: (state, action) => {
+            socket.emit('disconnectedUser', state.userLogged.user.userId || state.userLogged.user._id);
             localStorage.removeItem('user');
             state.userLogged = null;
         },
@@ -139,8 +140,13 @@ const loginSlice = createSlice({
             state.codeRegister = action.payload;
         },
         setUserLogged: (state, action) => {
+            socket.emit('setUserId', action.payload.user._id);
             localStorage.setItem('user', JSON.stringify(action.payload));
             state.userLogged = action.payload;
+        },
+        setEmitSocketConnection: (state, action) => {
+            socket.on('connectedUsers', (data) => console.log('SocketId:   '+data));
+            socket.emit('setUserId', action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -150,6 +156,8 @@ const loginSlice = createSlice({
             })
             .addCase(fetchLogin.fulfilled, (state, action) => {
                 localStorage.setItem('user', JSON.stringify(action.payload));
+                const socket = io(process.env.REACT_APP_API_URL);
+                socket.emit('setUserId', action.payload.user.userId);
                 state.userLogged = action.payload;
                 state.loading = false;
             })
@@ -201,7 +209,6 @@ const loginSlice = createSlice({
             }
             )
             .addCase(fetchAnUser.rejected, (state, action) => {
-
                 state.error = action.error.message;
                 state.loading = false;
             }
@@ -210,5 +217,5 @@ const loginSlice = createSlice({
 })
 
 
-export const { logout, setCodeRegister, setUserLogged } = loginSlice.actions;
+export const { logout, setCodeRegister, setUserLogged, setEmitSocketConnection } = loginSlice.actions;
 export default loginSlice.reducer;

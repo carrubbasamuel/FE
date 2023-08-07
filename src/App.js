@@ -1,5 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import io from "socket.io-client";
 import ProtectedRoute from "./Protected_Route_JWT";
 import Footer from "./components/footer/Footer";
 import NavBar from "./components/navbar/BlogNavbar";
@@ -8,9 +10,10 @@ import Dashboard from "./views/dashboard/dashboard";
 import Home from "./views/home/Home";
 import Login from "./views/login/login";
 import NewBlogPost from "./views/new/New";
+import ProfileAccounts from "./views/profileAccounts/profileAccounts";
 import Register from "./views/register/register";
 import SuccessLog from "./views/successLog/successLog";
-import ProfileAccounts from "./views/profileAccounts/profileAccounts";
+
 
 function App() {
   return (

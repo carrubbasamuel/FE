@@ -16,6 +16,7 @@ export default function SuccessLog() {
         statusCode: 200,
         token: token,
         user: {
+            _id: decoded.userId,
             name: decoded.name,
             surname: decoded.surname,
             email: decoded.email,

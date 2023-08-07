@@ -33,10 +33,10 @@ export default function ReviewList() {
     <>
       {loading && reviews.length === 0 && <div className="d-flex justify-content-center mt-5"><Spinner animation="grow" variant="dark" /></div>}
       {loading === false && reviews.length === 0 &&
-        <div className="d-flex flex-column align-items-center mt-3">
+        <div className="d-flex flex-column align-items-center mt-5">
           <h2>No reviews yet</h2>
           <p>Be the first to review this post</p>
-          <div className="w-25">
+          <div style={{width: '100px'}}>
             <Lottie options={{
               loop: true,
               autoplay: true,

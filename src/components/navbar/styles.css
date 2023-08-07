@@ -52,3 +52,25 @@
   -moz-box-shadow: 2px 0px 18px 1px rgba(222, 222, 222, 1);
   box-shadow: 2px 0px 4px 1px rgba(222, 222, 222, 1);
 }
+
+.custom-dropdown-menu {
+  border-radius: 25px!important;
+  position: absolute;
+  left: auto;
+  right: 0;
+  
+}
+
+#noti  .dropdown-toggle::after {
+  display: none
+}
+
+.dropdown-toggle{
+  border: none!important;
+}
+
+.alertnoti{
+  position: absolute;
+  right: 0;
+  top: 0;
+}

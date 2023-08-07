@@ -5,6 +5,8 @@ import { FcGoogle } from 'react-icons/fc';
 import { MdDangerous } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaFacebook } from 'react-icons/fa';
+
 import logo from '../../assets/logo.png';
 import { fetchLogin, setCodeRegister } from '../../redux/reducers/LoginSlice';
 
@@ -14,6 +16,7 @@ import './login.css';
 export default function Login() {
   const [notexist, setNotexist] = useState(false);
   const { codeRegister } = useSelector((state) => state.login);
+  
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -82,7 +85,7 @@ export default function Login() {
                   <h5 className='text-center'>OR</h5>
                 <Col>
                   <button onClick={() => window.location.href = process.env.REACT_APP_API_URL + '/auth/google'} className='googlebutton'><FcGoogle className='me-3 fs-3' /> SingIn with Google</button>
-                  {/* <button onClick={() => window.location.href = process.env.REACT_APP_API_URL + '/auth/facebook/callback'} className='facebookbutton'><FaFacebook className='me-3 fs-3' /> SingIn with Facebook</button> */}
+                  <button onClick={() => window.location.href = process.env.REACT_APP_API_URL + '/auth/facebook/callback'} className='facebookbutton'><FaFacebook className='me-3 fs-3' /> SingIn with Facebook</button>
                   <button onClick={() => window.location.href = process.env.REACT_APP_API_URL + '/auth/github/callback'} className='githubbutton'><BsGithub className='me-3 fs-3' /> SingIn with GitHub</button>
                 </Col>
               </Row>

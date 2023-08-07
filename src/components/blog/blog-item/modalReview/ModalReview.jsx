@@ -40,14 +40,11 @@ function ModalReview() {
   return (
     <div>
       <Modal size='lg' show={showModal} onHide={handleClose} centered>
-        <Modal.Header>
-          <Modal.Title>Add your Review</Modal.Title>
-        </Modal.Header>
 
         <ReviewList />
 
         <Form.Group className='p-2' controlId="exampleForm.ControlTextarea1">
-          <Form.Label className='fs-3'>Add a comment</Form.Label>
+          <Form.Label className='fs-5'>Add a comment</Form.Label>
           <Form.Control as="textarea" rows={3} ref={comment} />
         </Form.Group>
         <div className='mt-2 p-3 d-flex flex-column align-items-center ' >

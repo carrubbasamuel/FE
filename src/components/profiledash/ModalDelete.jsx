@@ -21,9 +21,9 @@ export default function ModalDelete(props) {
             Are you sure you want to delete your account?
         </h1>
         <p className='fs-3'>
-            If you delete your account, you will lose all your posts and reviews.
+            If you delete your account, you will lose all your posts, reviews, likes and saved post.
         </p>
-        <div className='fs-3 mt-3'>
+        <div className='d-flex justify-content-around fs-3 mt-5'>
             <Button variant='success' className='fs-3' onClick={() => dispatch(fetchDelete()).then(()=> navigate('/login'))}>Yes</Button>
             <Button variant='success' className='fs-3' onClick={props.onHide}>No</Button>
         </div>

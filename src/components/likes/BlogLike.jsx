@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { socket } from '../../redux/reducers/LoginSlice';
 import { fetchAuthors, fetchLike, fetchSavedPosts, fetchUnlike, setChange } from '../../redux/reducers/PostSlice';
 import './bloglike.css';
 
@@ -13,11 +14,11 @@ export default function BlogLikeButton({ posts }) {
   const dispatch = useDispatch();
   const location = useLocation();
 
-
   const handleLike = () => {
     dispatch(fetchLike(_id)).then(() => {
       dispatch(fetchAuthors())
       dispatch(setChange(true))
+      socket.emit('notification', posts.author._id)
     });
   };
 

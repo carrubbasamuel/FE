@@ -1,33 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Container, Image } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import BlogAuthor from "../../components/blog/blog-author/BlogAuthor";
 
 
 import BlogLikeButton from "../../components/likes/BlogLike";
+import { fetchAuthors } from "../../redux/reducers/PostSlice";
 import "./styles.css";
 
 
 const Blog = props => {
+  const dispatch = useDispatch();
   const [blog, setBlog] = useState({});
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const navigate = useNavigate();
   const posts = useSelector((state) => state.author.data);
 
+  useEffect(() => {
+    dispatch(fetchAuthors());
+  }, [dispatch]);
+
 
   useEffect(() => {
     const { id } = params;
     const blog = posts.find(post => post._id.toString() === id);
-
     if (blog) {
       setBlog(blog);
       setLoading(false);
-    } else {
-      navigate("/404");
     }
   }, [params, posts, navigate]);
+
+  console.log(blog);
 
   
   if (loading) {

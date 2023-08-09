@@ -162,6 +162,7 @@ const loginSlice = createSlice({
             state.userLogged = action.payload;
         },
         setEmitSocketConnection: (state, action) => {
+            console.log('Id:   ' + action.payload);
             socket.on('connectedUsers', (data) => console.log('SocketId:   ' + data));
             socket.emit('setUserId', action.payload);
         }
@@ -173,7 +174,7 @@ const loginSlice = createSlice({
             })
             .addCase(fetchLogin.fulfilled, (state, action) => {
                 localStorage.setItem('user', JSON.stringify(action.payload));
-                const socket = io(process.env.REACT_APP_API_URL);
+                console.log(action.payload);
                 socket.emit('setUserId', action.payload.user.userId);
                 state.userLogged = action.payload;
                 state.loading = false;

@@ -48,14 +48,15 @@ export default function NotificationSocket() {
         <div>
             <div className="d-flex justify-content-center align-items-center me-3">
                 <Dropdown id='noti'>
-                    <Dropdown.Toggle variant={null} className='position-realtive' >
+                    <div className="d-flex justify-content-center align-items-center" onClick={() => setIsNewNotification(false)}>
+                    <Dropdown.Toggle variant={null} className='position-realtive'  >
                         {/* Icona della campanella */}
-                        <PiBellSimpleBold style={{ fontSize: '25px', cursor: 'pointer' }} onClick={() => setIsNewNotification(false)} />
+                        <PiBellSimpleBold style={{ fontSize: '25px', cursor: 'pointer' }}  />
                         {isNewNotification && <p className='alertnoti'>
                             <span className="badge bg-danger rounded-pill">!</span>
                         </p>}
                     </Dropdown.Toggle>
-
+                    </div>
                     {/* Dropdown.Menu con le notifiche */}
                     <Dropdown.Menu className="custom-dropdown-menu p-3">
                         {notification && notification.map((noti) => (

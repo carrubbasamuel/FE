@@ -9,7 +9,7 @@ export default function ProtectedRoute({ element }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setEmitSocketConnection(userLogged.user.userId || userLogged.user._id));
+    dispatch(setEmitSocketConnection(userLogged && userLogged.user._id));
    }, []);
 
   if (!userLogged || userLogged.statusCode !== 200) {

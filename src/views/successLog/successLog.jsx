@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { setUserLogged } from "../../redux/reducers/LoginSlice";
 
 
@@ -27,6 +28,16 @@ export default function SuccessLog() {
 
     useEffect(() => {
         navigate('/');
+        toast.success(`Welcome on Blog, ${decoded.name}`, {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
     }, [navigate]);
     
 

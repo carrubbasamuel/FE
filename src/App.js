@@ -13,11 +13,13 @@ import NewBlogPost from "./views/new/New";
 import ProfileAccounts from "./views/profileAccounts/profileAccounts";
 import Register from "./views/register/register";
 import SuccessLog from "./views/successLog/successLog";
+import { ToastContainer } from "react-toastify";
 
 
 function App() {
   return (
     <Router>
+      <ToastContainer />
       <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />

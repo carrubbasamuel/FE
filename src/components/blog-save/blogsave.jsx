@@ -32,7 +32,7 @@ export default function BlogSaveButton({ posts }) {
   };
 
     return posts?.isMine === false ?
-        <div className="position-absolute mark">
+        <div className="mark">
           {posts?.isSaved ? <BsBookmarkDashFill style={{ cursor: 'pointer', fill: 'black' }} onClick={handleUnsave} /> : <BsBookmarkPlusFill style={{ cursor: 'pointer' }} onClick={handleSave} />}
         </div>
         :

@@ -22,7 +22,7 @@ function ModalReview() {
 
   const comment = useRef('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
 
     const data = {
       rate: rating,
@@ -30,10 +30,10 @@ function ModalReview() {
       postId: postToReview
     }
 
-     dispatch(fetchAddReview(data)).then(()=>{
+     await dispatch(fetchAddReview(data)).then(()=>{
       dispatch(setRating(0));
       comment.current.value = '';
-    }).then(async ()=> await dispatch(fetchGetReviews()));
+    }).then(() => dispatch(fetchGetReviews()));
   }
 
 

@@ -1,6 +1,7 @@
 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import io from 'socket.io-client';
 
 
@@ -10,12 +11,18 @@ export const fetchLogin = createAsyncThunk(
     'login/fetchLogin',
     async (user) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+            const response = await toast.promise(fetch(`${process.env.REACT_APP_API_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(user)
+            }), {
+                pending: 'Login...',
+                success: 'Login completed!',
+                error: 'Login failed!'
+            },{
+                position: toast.POSITION.TOP_CENTER
             });
             let data = await response.json();
             return data;
@@ -31,12 +38,16 @@ export const fetchRegister = createAsyncThunk(
     'login/fetchRegister',
     async (user) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+            const response = await toast.promise(fetch(`${process.env.REACT_APP_API_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(user)
+            }), {
+                pending: 'Register...',
+                success: 'Register completed!',
+                error: 'Register failed!'
             });
             const data = await response.json();
             return data;
@@ -80,11 +91,17 @@ export const fetchUpdateAvatar = createAsyncThunk(
             const formData = new FormData();
             formData.append('avatar', file);
 
-            const response = await axios.patch(`${process.env.REACT_APP_API_URL}/updateAvatar`, formData, {
+            const response = await toast.promise(axios.patch(`${process.env.REACT_APP_API_URL}/updateAvatar`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer ' + getState().login.userLogged.token
+                    Authorization: `Bearer ${getState().login.userLogged.token}`,
                 }
+            }), {
+                pending: 'Updating avatar...',
+                success: 'Avatar updated!',
+                error: 'Avatar update failed!'
+            },{
+                position: toast.POSITION.TOP_CENTER
             });
             const { data } = response;
             return data;
@@ -145,7 +162,7 @@ const loginSlice = createSlice({
             state.userLogged = action.payload;
         },
         setEmitSocketConnection: (state, action) => {
-            socket.on('connectedUsers', (data) => console.log('SocketId:   '+data));
+            socket.on('connectedUsers', (data) => console.log('SocketId:   ' + data));
             socket.emit('setUserId', action.payload);
         }
     },

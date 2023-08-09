@@ -193,7 +193,7 @@ export const fetchLike = createAsyncThunk(
 //fetch for unlike
 export const fetchUnlike = createAsyncThunk(
     'authors/fetchUnlike',
-    async (id, { getState }) => {
+    async (id, { getState, dispatch }) => {
         try {
             const user = getState().login.userLogged;
             const { token } = user;

@@ -29,7 +29,7 @@ const BlogItem = ({ posts }) => {
   
 
   return (
-    <Card className="blog-card shadow">
+    <Card className="blog-card shadow" >
       {/* Save button */}
       <BlogSaveButton posts={posts}/>
       <Card.Img variant="top" src={cover} className="blog-cover" />

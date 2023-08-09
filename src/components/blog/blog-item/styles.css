@@ -49,8 +49,9 @@
 }
 
 .mark{
-  background-color: transparent!important;
+  position: absolute;
   
+  background-color: transparent!important;
   top:-35px;
   left: 10px;
   font-size: 50px

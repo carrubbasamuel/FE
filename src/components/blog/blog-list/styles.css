@@ -3,17 +3,17 @@
 }
 
 .blog-card:hover{
-    animation: postover 0.5s ease-in-out;
+    animation: posthover 0.5s ease-in-out;
 }
 
-@keyframes postover{
+@keyframes posthover{
     0%{
-        transform: scale(1);
+        transform: scale3d(1, 1, 1);
     }
     50%{
-        transform: scale(1.02);
+        transform: scale3d(1.02, 1.02, 1.02);
     }
     100%{
-        transform: scale(1);
+        transform: scale3d(1, 1, 1);
     }
 }

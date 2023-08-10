@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { IoMdNotificationsOff } from 'react-icons/io';
 import { PiBellSimpleBold } from 'react-icons/pi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -35,6 +36,23 @@ export default function NotificationSocket() {
             setIsNewNotification(false);
         });
 
+        socket.on('comment', (data) => {
+            dispatch(fetchNotifications());
+            setIsNewNotification(true);
+            toast.success("Someone comments on your post!", {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+                progress: undefined,
+            });
+        });
+
+
+
         return () => {
             socket.disconnect();
         };
@@ -49,37 +67,47 @@ export default function NotificationSocket() {
             <div className="d-flex justify-content-center align-items-center me-3">
                 <Dropdown id='noti'>
                     <div className="d-flex justify-content-center align-items-center" onClick={() => setIsNewNotification(false)}>
-                    <Dropdown.Toggle variant={null} className='position-realtive'  >
-                        {/* Icona della campanella */}
-                        <PiBellSimpleBold style={{ fontSize: '25px', cursor: 'pointer' }}  />
-                        {isNewNotification && <p className='alertnoti'>
-                            <span className="badge bg-danger rounded-pill">!</span>
-                        </p>}
-                    </Dropdown.Toggle>
+                        <Dropdown.Toggle variant={null} className={`position-relative ${notification.length === 0 ? "disabled-button" : ""}`}  >
+                            {
+                                notification?.length === 0 ?
+                                    <IoMdNotificationsOff style={{ fontSize: '25px' }} />
+                                    :
+                                    <>
+                                        <PiBellSimpleBold style={{ fontSize: '25px', cursor: 'pointer' }} />
+                                        {isNewNotification && <p className='alertnoti'>
+                                            <span className="badge bg-danger rounded-pill">!</span>
+                                        </p>}
+                                    </>
+
+                            }
+
+                        </Dropdown.Toggle>
                     </div>
                     {/* Dropdown.Menu con le notifiche */}
                     <Dropdown.Menu className="custom-dropdown-menu p-3">
+                        {notification?.length === 0 && <div className="d-flex flex-column justify-content-center align-items-center">
+                            <IoMdNotificationsOff style={{ fontSize: '50px', cursor: 'pointer' }} />
+                            <p className='m-2 text-nowrap'>No notifications</p>
+                        </div>}
                         {notification && notification.map((noti) => (
                             <>
                                 <Dropdown.Item key={noti._id} as={Link} to={`/profile/${noti.sender._id}`}>
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <div className="d-flex justify-content-center align-items-center">
-                                            <img className="rounded-circle" width={30} height={30} src={noti.sender.avatar} alt="" />
-                                            <div className="ms-3 d-flex align-items-center">
-                                                <p className="mb-0 me-3">{noti.message}</p>
-                                                <img width={50} height={50} src={noti.postId.cover} alt="" />
-                                            </div>
-                                        </div>
 
-                                        <p className="mb-0">{noti.createdAt}</p>
+                                    <div className="d-flex justify-content-center align-items-center w-100">
+                                        <img className="rounded-circle" width={30} height={30} src={noti.sender.avatar} alt="" />
+                                        <div className="ms-3 d-flex align-items-center justify-content-between w-100">
+                                            <p className="mb-0 me-3">{noti.message}</p>
+                                            <img width={50} height={50} src={noti.postId.cover} alt="" />
+                                        </div>
                                     </div>
+
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
                             </>
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
-                
+
             </div>
         </div>
     );

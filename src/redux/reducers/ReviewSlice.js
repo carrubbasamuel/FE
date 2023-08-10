@@ -12,6 +12,7 @@ export const fetchAddReview = createAsyncThunk(
                 Authorization: `Bearer ${token}`,
             }
         });
+        
         const { data } = response;
         return data;
     }

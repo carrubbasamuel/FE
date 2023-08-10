@@ -18,7 +18,6 @@ export default function BlogLikeButton({ posts }) {
     dispatch(fetchLike(_id)).then(() => {
       dispatch(fetchAuthors())
       dispatch(setChange(true))
-      socket.emit('notification', posts.author._id)
     });
   };
 

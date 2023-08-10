@@ -15,7 +15,6 @@ export const fetchNotifications = createAsyncThunk(
                 throw new Error("Errore nel caricamento delle notifiche");
             }
             const { notifiche } = await response.json();
-            console.log(notifiche);
             return notifiche;
         } catch (error) {
             console.log(error);

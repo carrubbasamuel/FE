@@ -1,8 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import io from 'socket.io-client';
 import LoginSlice from './reducers/LoginSlice';
+import NotificationSlice from './reducers/NotificationSlice';
 import PostSlice from './reducers/PostSlice';
 import ReviewSlice from './reducers/ReviewSlice';
-import NotificationSlice from './reducers/NotificationSlice';
+
+
 
 const reducerSlice = combineReducers({
     author: PostSlice,
@@ -15,5 +18,7 @@ const reducerSlice = combineReducers({
 const store = configureStore({
     reducer: reducerSlice
 })
+
+
 
 export default store;

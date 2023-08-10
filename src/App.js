@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import io from "socket.io-client";
 import ProtectedRoute from "./Protected_Route_JWT";
 import Footer from "./components/footer/Footer";
@@ -13,7 +13,10 @@ import NewBlogPost from "./views/new/New";
 import ProfileAccounts from "./views/profileAccounts/profileAccounts";
 import Register from "./views/register/register";
 import SuccessLog from "./views/successLog/successLog";
-import { ToastContainer } from "react-toastify";
+
+
+
+
 
 
 function App() {
@@ -36,5 +39,7 @@ function App() {
     </Router>
   );
 }
+
+
 
 export default App;

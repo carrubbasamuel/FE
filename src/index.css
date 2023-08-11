@@ -15,3 +15,26 @@ body {
 .page-link{
   color: #000;
 }
+
+@media screen and (max-width: 768px) {
+ #LottiHeader{
+    width: 400px!important;
+ }
+ .blog-navbar-brand{
+   width: 100px;
+ }
+ .login-root{
+  padding: 10px;
+ }
+ .changeprofile{
+    right: 60px;
+ }
+
+ .dash div.d-flex{
+  margin-top: 50px;
+  flex-direction: column;
+ }
+ .dash div.d-flex div.ms-5{
+  margin: 0 !important;
+ }
+}

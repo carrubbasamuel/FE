@@ -18,16 +18,16 @@ export default function Header({name}) {
 
     return (
         <Container id="header" className="mt-5 mb-5">
-            <Row>
+            <Row className="flex-column flex-md-row">
             <Col className="d-flex flex-column align-items-center justify-content-center blog-main-title mb-3">
                     <Fade top duration={900}>
-                    <h1 className="display-1 text-end">Walcome on Strive {name}!</h1>
-                    <p className="fs-4 text-end"><span className="text-success">Explore our blog </span>A World of Discoveries and Inspiration!</p>
+                    <h1 className="display-1 text-center text-md-end ">Walcome on Strive {name}!</h1>
+                    <p className="fs-4 text-center text-md-end"><span className="text-success">Explore our blog </span>A World of Discoveries and Inspiration!</p>
                     </Fade>
                 </Col>
             <Col >
                 <Fade top duration={900}>
-                    <Lottie options={lottieOptions} width={700} />
+                    <Lottie id="LottiHeader" options={lottieOptions}  />
                 </Fade>
                 </Col>
             </Row>

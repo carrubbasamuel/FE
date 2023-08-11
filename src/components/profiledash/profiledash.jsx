@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col, Container, Dropdown, Row } from 'react-bootstrap';
 import { BsGear } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import AvatarImg from '../avatarimg/avatarimg';
 import ModalDelete from './ModalDelete';
 import './profiledash.css';
-import AvatarImg from '../avatarimg/avatarimg';
-import { useSelector } from 'react-redux';
 
 const ProfileDash = () => {
     const [modalShow, setModalShow] = React.useState(false);
@@ -14,7 +14,7 @@ const ProfileDash = () => {
 
     return (
         <div style={{ margin: '80px 0' }}>
-            <Container>
+            <Container className='desc'>
                 <Row className='align-items-center'>
                     <Col className='text-center '>
                         <AvatarImg />

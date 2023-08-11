@@ -30,11 +30,11 @@ body {
     right: 60px;
  }
 
- .dash div.d-flex{
+ .desc div.d-flex{
   margin-top: 50px;
   flex-direction: column;
  }
- .dash div.d-flex div.ms-5{
+ .desc div.d-flex div.ms-5{
   margin: 0 !important;
  }
 }

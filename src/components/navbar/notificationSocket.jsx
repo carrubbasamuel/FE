@@ -67,9 +67,9 @@ export default function NotificationSocket() {
             <div className="d-flex justify-content-center align-items-center me-3">
                 <Dropdown id='noti'>
                     <div className="d-flex justify-content-center align-items-center" onClick={() => setIsNewNotification(false)}>
-                        <Dropdown.Toggle variant={null} className={`position-relative ${notification.length === 0 ? "disabled-button" : ""}`}  >
+                        <Dropdown.Toggle variant={null} className={`position-relative ${notification && notification.length === 0 ? "disabled-button" : ""}`}  >
                             {
-                                notification?.length === 0 ?
+                                notification && notification.length === 0 ?
                                     <IoMdNotificationsOff style={{ fontSize: '25px' }} />
                                     :
                                     <>

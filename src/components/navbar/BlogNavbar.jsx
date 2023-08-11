@@ -42,7 +42,7 @@ const NavBar = props => {
                   <img src={user.statusCode === 200 && user.user.avatar} alt="avatar" className="userimg" />
 
                 </Dropdown.Toggle>
-                <Dropdown.Menu>
+                <Dropdown.Menu className="custom-dropdown-menu mt-3">
                   <Dropdown.Item as={Link} to="/dashboard">Dashboard <LuLayoutDashboard className="ms-3"/> </Dropdown.Item>
                   <Dropdown.Item as={Link} to="/new">New Post <BsFileEarmarkPlus className="ms-3"/> </Dropdown.Item>
                   <Dropdown.Item onClick={handleLogout}>Logout <BiLogOut className="ms-3"/> </Dropdown.Item>

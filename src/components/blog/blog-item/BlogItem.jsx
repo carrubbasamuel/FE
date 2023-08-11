@@ -36,7 +36,7 @@ const BlogItem = ({ posts }) => {
       <Card.Body as={Link} to={`/blog/${_id}`}>
         <Card.Title>{title}</Card.Title>
       </Card.Body>
-      <Card.Footer className="d-flex justify-content-between align-items-center">
+      <Card.Footer className="d-flex  justify-content-between align-items-center">
         <BlogAuthor {...author} />
         <div className="d-flex align-items-center justify-content-center fs-4">
 

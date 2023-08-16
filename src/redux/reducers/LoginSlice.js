@@ -48,6 +48,9 @@ export const fetchRegister = createAsyncThunk(
                 pending: 'Register...',
                 success: 'Register completed!',
                 error: 'Register failed!'
+            }
+            ,{
+                position: toast.POSITION.TOP_CENTER
             });
             const data = await response.json();
             return data;
@@ -149,7 +152,7 @@ const loginSlice = createSlice({
     initialState,
     reducers: {
         logout: (state, action) => {
-            socket.emit('disconnectedUser', state.userLogged.user.userId || state.userLogged.user._id);
+            socket.emit('disconnectedUser', state.userLogged.user._id);
             localStorage.removeItem('user');
             state.userLogged = null;
         },
@@ -162,9 +165,9 @@ const loginSlice = createSlice({
             state.userLogged = action.payload;
         },
         setEmitSocketConnection: (state, action) => {
-            console.log('Id:   ' + action.payload);
-            socket.on('connectedUsers', (data) => console.log('SocketId:   ' + data));
+            socket.emit('disconnectedUser', state.userLogged.user._id);
             socket.emit('setUserId', action.payload);
+            
         }
     },
     extraReducers: (builder) => {

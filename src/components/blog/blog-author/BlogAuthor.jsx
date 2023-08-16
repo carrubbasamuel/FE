@@ -6,7 +6,7 @@ import "./styles.css";
 const BlogAuthor = props => {
   const { name, avatar } = props;
   return (
-    <Row as={Link} to={`/profile/${props._id}`}>
+    <Row as={Link} to={`/profile/${props._id}`} className="text-dark">
       <Col xs={"auto"} className="pe-0">
         <Image className="blog-author" src={avatar} roundedCircle />
       </Col>

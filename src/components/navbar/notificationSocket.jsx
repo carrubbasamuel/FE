@@ -78,9 +78,7 @@ export default function NotificationSocket() {
                                             <span className="badge bg-danger rounded-pill">!</span>
                                         </p>}
                                     </>
-
                             }
-
                         </Dropdown.Toggle>
                     </div>
                     {/* Dropdown.Menu con le notifiche */}
@@ -97,7 +95,7 @@ export default function NotificationSocket() {
                                         <img className="rounded-circle" width={30} height={30} src={noti.sender.avatar} alt="" />
                                         <div className="ms-3 d-flex align-items-center justify-content-between w-100">
                                             <p className="mb-0 me-3">{noti.message}</p>
-                                            <img width={50} height={50} src={noti.postId.cover} alt="" />
+                                            <img width={50} height={50} src={noti.postId.cover || null } alt="" />
                                         </div>
                                     </div>
 

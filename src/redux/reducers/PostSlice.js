@@ -35,7 +35,7 @@ export const fetchNewPost = createAsyncThunk(
         formData.append('category', post.category);
         formData.append('coverImg', post.cover);
         formData.append('content', post.content);
-        formData.append('readTime.value', post.readTime.value);
+        formData.append('readTime', post.readTime);
 
         const user = getState().login.userLogged;
         const ApiKey = user.token;

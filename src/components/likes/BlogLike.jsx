@@ -2,7 +2,6 @@ import React from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { socket } from '../../redux/reducers/LoginSlice';
 import { fetchAuthors, fetchLike, fetchSavedPosts, fetchUnlike, setChange } from '../../redux/reducers/PostSlice';
 import './bloglike.css';
 

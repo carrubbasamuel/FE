@@ -10,7 +10,7 @@ export default function ProtectedRoute({ element }) {
 
   useEffect(() => {
     dispatch(setEmitSocketConnection(userLogged && userLogged.user._id));
-   }, []);
+   }, [dispatch, userLogged]);
 
   if (!userLogged || userLogged.statusCode !== 200) {
     localStorage.removeItem("user");

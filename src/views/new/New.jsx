@@ -38,10 +38,7 @@ const NewBlogPost = props => {
     const newBlog = {
       cover: cover,
       title: title.current.value,
-      readTime: {
-        value: time.current.value,
-        unit: "minute",
-      },
+      readTime: time.current.value,
       category: category.current.value,
       content: content.current.value,
     };

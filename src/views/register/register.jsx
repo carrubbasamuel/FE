@@ -2,7 +2,8 @@ import { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchRegister, fetchLogin } from "../../redux/reducers/LoginSlice";
+import { toast } from "react-toastify";
+import { fetchLogin, fetchRegister } from "../../redux/reducers/LoginSlice";
 import "./register.css";
 
 export default function Register() {
@@ -26,9 +27,16 @@ export default function Register() {
         }
         
         dispatch(fetchRegister(formData))
-        .then(() => dispatch(fetchLogin({ email: formData.email, password: formData.password})))
-        .then(()=>navigate("/"));
-    
+        .then((res) => {
+          if(res.payload.errors){
+            res.payload.errors.map((error) => 
+              toast.error(error.msg, { position: "bottom-left" })
+            )
+            return
+            }else{
+              dispatch(fetchLogin({ email: formData.email, password: formData.password})).then(()=>navigate("/"));
+            }
+        })
     }
 
     return (

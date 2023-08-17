@@ -10,23 +10,21 @@ export default function ProtectedRoute({ element }) {
 
   useEffect(() => {
     dispatch(setEmitSocketConnection(userLogged && userLogged.user._id));
-   }, [dispatch, userLogged]);
+  }, [dispatch, userLogged]);
 
   if (!userLogged || userLogged.statusCode !== 200) {
     localStorage.removeItem("user");
     return <Navigate to="/login" />;
-  }
+  } else {
+    const decoded = jwt_decode(userLogged.token);
+    const exp = decoded.exp;
+    const now = Date.now() / 1000;
 
-  const decoded = jwt_decode(userLogged.token);
-  const exp = decoded.exp;
-  const now = Date.now() / 1000;
-
-  if (exp < now) {
-    localStorage.removeItem("user");
-    return <Navigate to="/login" />;
+    if (exp < now) {
+      localStorage.removeItem("user");
+      return <Navigate to="/login" />;
+    }
   }
   
-  
-  
-  return element ;
+  return element;
 }

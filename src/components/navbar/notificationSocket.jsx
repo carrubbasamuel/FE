@@ -56,7 +56,8 @@ export default function NotificationSocket() {
         return () => {
             socket.disconnect();
         };
-    }, [socket]);
+    }, [dispatch]);
+
 
     useEffect(() => {
         dispatch(fetchNotifications());

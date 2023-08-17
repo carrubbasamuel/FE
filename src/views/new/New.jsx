@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { fetchNewPost } from "../../redux/reducers/PostSlice";
 import "./styles.css";
 
@@ -42,7 +42,15 @@ const NewBlogPost = props => {
       category: category.current.value,
       content: content.current.value,
     };
-    dispatch(fetchNewPost(newBlog)).then(() => navigate('/dashboard'))
+    dispatch(fetchNewPost(newBlog)).then((res) => {
+      if (res.payload.statusCode === 500){
+        if(res.payload.error.errors){
+          toast.error("Compila tutti i campi", { position: "bottom-left" })
+        }
+        return
+      }
+      navigate('/dashboard')
+    })
   }
 
 

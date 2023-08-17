@@ -38,29 +38,19 @@ export const fetchRegister = createAsyncThunk(
     'login/fetchRegister',
     async (user) => {
         try {
-            const response = await toast.promise(fetch(`${process.env.REACT_APP_API_URL}/register`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(user)
-            }), {
-                pending: 'Register...',
-                success: 'Register completed!',
-                error: 'Register failed!'
-            }
-            ,{
-                position: toast.POSITION.TOP_CENTER
             });
             const data = await response.json();
             return data;
-
         }
         catch (error) {
-            console.log(error);
+            return error;
         }
-
-
     }
 )
 
@@ -165,9 +155,7 @@ const loginSlice = createSlice({
             state.userLogged = action.payload;
         },
         setEmitSocketConnection: (state, action) => {
-            socket.emit('disconnectedUser', state.userLogged.user._id);
             socket.emit('setUserId', action.payload);
-            
         }
     },
     extraReducers: (builder) => {

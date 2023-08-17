@@ -45,9 +45,6 @@ const Blog = props => {
     }
   }, [params, posts, navigate]);
 
-  console.log(blog);
-
-
   if (loading) {
     return <div>loading</div>;
   } else {

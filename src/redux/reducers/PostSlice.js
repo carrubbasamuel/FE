@@ -212,6 +212,30 @@ export const fetchUnlike = createAsyncThunk(
     }
 )
 
+//Search Post by title
+export const fetchSearchPost = createAsyncThunk(
+    'authors/fetchSearchPost',
+    async (title, { getState }) => {
+        console.log(title);
+        try {
+            const user = getState().login.userLogged;
+            const { token } = user;
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/search?title=${title}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            const { data } = response;
+            return data;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    }
+)
+
+
 
 
 
@@ -219,6 +243,7 @@ export const fetchUnlike = createAsyncThunk(
 const initialState = {
     data: [],
     saved: [],
+    search: [],
     loading: false,
     error: null,
     tokenValidation: null,
@@ -233,6 +258,9 @@ const PostSlice = createSlice({
     reducers: {
         setChange: (state, action) => {
             state.change = action.payload;
+        },
+        setSearchPost: (state, action) => {
+            state.search = [];
         }
     },
     extraReducers: (builder) => {
@@ -296,6 +324,17 @@ const PostSlice = createSlice({
                 state.loading = false;
                 state.saved = [];
             })
+            .addCase(fetchSearchPost.pending, (state, action) => {
+                state.loading = true;
+            })
+            .addCase(fetchSearchPost.fulfilled, (state, action) => {
+                state.loading = false;
+                state.search = action.payload.posts;
+            })
+            .addCase(fetchSearchPost.rejected, (state, action) => {
+                state.loading = false;
+                state.search = [];
+            })
     }
 })
 
@@ -303,5 +342,5 @@ const PostSlice = createSlice({
 
 
 
-export const { setChange } = PostSlice.actions;
+export const { setChange, setSearchPost } = PostSlice.actions;
 export default PostSlice.reducer;

@@ -9,6 +9,7 @@ import logo from "../../assets/logo.png";
 import { logout } from "../../redux/reducers/LoginSlice";
 import NavigationSocker from "./notificationSocket";
 import "./styles.css";
+import SearchBar from "../searchBar/searchBar";
 
 
 
@@ -35,8 +36,8 @@ const NavBar = props => {
         {user && user.statusCode === 200 && !(location.pathname === '/login') ?
           <div className="d-flex">
             <div className={`align-items-center justify-content-center ${user ? "d-flex" : "d-none"}`}>
+              <SearchBar />
               <NavigationSocker />
-
               <Dropdown>
                 <Dropdown.Toggle variant="light" id="dropdown-basic">
                   <img src={user.statusCode === 200 && user.user.avatar} alt="avatar" className="userimg" />

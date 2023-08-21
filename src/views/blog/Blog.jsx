@@ -32,6 +32,7 @@ const Blog = props => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(fetchAuthors());
   }, [dispatch]);
 
@@ -55,7 +56,8 @@ const Blog = props => {
         <Container>
           <Image className="blog-details-cover" src={blog.cover} fluid />
           <h1 className="blog-details-title">{blog.title}</h1>
-          <div className="blog-details-content">{blog.content}</div>
+          <div dangerouslySetInnerHTML={{ __html: blog.content}} className="blog-details-content mb-5"></div>
+          <hr />
           <div className="blog-details-container">
             <div className="blog-details-author">
               <BlogAuthor {...blog.author} />

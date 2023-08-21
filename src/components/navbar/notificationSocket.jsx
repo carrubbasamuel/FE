@@ -36,6 +36,11 @@ export default function NotificationSocket() {
             setIsNewNotification(false);
         });
 
+        socket.on('uncomment', () => {
+            dispatch(fetchNotifications());
+            setIsNewNotification(false);
+        });
+
         socket.on('comment', (data) => {
             dispatch(fetchNotifications());
             setIsNewNotification(true);
